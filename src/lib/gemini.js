@@ -9,8 +9,16 @@ const genAI = new GoogleGenerativeAI("AIzaSyCXoHJWFriF0NusmCpIk7YP8Wqy2RLvkek");
 // Track any active chat sessions
 let activeSession = null;
 
-export async function chatWithGemini(base64ImageData) {
+export async function chatWithGemini(base64ImageData, outputFormat = "text") {
   try {
+    const textPrompt =
+      "Extract the text content in this image, don't include any additional information. The text should be formatted in the following way: \n\n";
+
+    const jsonPrompt =
+      "Extract content from this image, then format it as a JSON object, don't include anything else. The values should be extracted from the image. The JSON object should be formatted as follows: \n\n";
+
+    const prompt = outputFormat === "text" ? textPrompt : jsonPrompt;
+
     // Get the model
     const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
 
@@ -26,7 +34,7 @@ export async function chatWithGemini(base64ImageData) {
         {
           parts: [
             {
-              text: "Extract the text content in this image, don't include any additional information. The text should be formatted in the following way: \n\n",
+              text: prompt,
             },
             imageData,
           ],
