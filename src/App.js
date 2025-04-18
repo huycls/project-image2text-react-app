@@ -51,7 +51,6 @@ function App() {
       // remove ```json in the begining and ``` in the end from the response
       const responseText = response.replace(/```json\n/, "").replace(/```/, "");
       setText(responseText);
-      console.log("Response from Gemini:", response);
       setIsLoading(false);
     } catch (error) {
       console.error("Error communicating with Gemini:", error);
