@@ -4,7 +4,7 @@ import {
   // HarmBlockThreshold,
 } from "@google/generative-ai";
 
-const genAI = new GoogleGenerativeAI("AIzaSyCXoHJWFriF0NusmCpIk7YP8Wqy2RLvkek");
+const genAI = new GoogleGenerativeAI(`${process.env.REACT_APP_SECRET_KEY}`);
 
 // Track any active chat sessions
 let activeSession = null;
