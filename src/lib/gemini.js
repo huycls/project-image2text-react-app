@@ -20,7 +20,9 @@ export async function chatWithGemini(base64ImageData, outputFormat = "text") {
     const prompt = outputFormat === "text" ? textPrompt : jsonPrompt;
 
     // Get the model
-    const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
+    const model = genAI.getGenerativeModel({
+      model: "gemini-3.1-flash-lite-preview",
+    });
 
     const imageData = {
       inlineData: {
